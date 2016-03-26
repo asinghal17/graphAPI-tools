@@ -28,7 +28,7 @@ After installing the supporting Libraries, fill out the "_/input/input.csv_" fil
 ## Execute
     $>python countLikes.py <input file path> <output file path>
 
-<input file path> = Path to your input you created in Step 2 above.    
+"input file path" = Path to your input you created in Step 2 above.    
 You will find your <output CSV> in the _output_ directory unless stated otherwise.
 
 ## Resources
