@@ -9,7 +9,7 @@ You will need an Access Token from Facebook for this script to be functional. Yo
 ### 2) Supporting Libraries
 "cd" into the file directory and run the script below to install the necessary libraries for this script.
 
-    $>python install -r requirements.txt
+    $>pip install -r requirements.txt
 
 ### 3) Input Schema
 After installing the supporting Libraries, fill out the "_/input/input.csv_" file in the _input_ Directory. Example Below:
