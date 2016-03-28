@@ -9,8 +9,10 @@ import requests
 import json
 import pandas as pd
 import csv
-from numpy import array
-
+from numpy import array,arange
+from matplotlib import pyplot as plt
+from matplotlib import style
+style.use('ggplot')
 # =================================================
 ### Helper Functions
 # =================================================
@@ -26,7 +28,7 @@ def getUrl(fbookid, goal):
 	url= 'Invalid entry for "goal" or "id"'
 	if goal=='page':
 		url= 'https://graph.facebook.com/%d/?fields=likes' %fbookid
-	elif (goal=='photo') or (goal=='post'):
+	else:
 		url= 'https://graph.facebook.com/%d/likes?summary=1' %fbookid
 	return url
 
@@ -43,6 +45,21 @@ def getLikes(fbookid,token,goal):
 		return getPageLikes(json)
 	else:
 		return getObjectLikes(json)
+
+def getbar(dictionary):
+	l=arange(len(dictionary))
+	plt.bar(l,dictionary.values(), color='#ff6701', align='center')
+	plt.ylabel('# of Likes')
+	plt.xticks(l,dictionary.keys())
+	plt.xlabel('Name')
+	plt.savefig("output/bar.png")
+	plt.show()
+
+def getLikesDict(arr):
+	d=dict()
+	for item in arr:
+		d[item[0]]=item[2]
+	return d
 
 # =================================================
 ### LIKE COUNTER
@@ -72,21 +89,22 @@ def run_counter(infile,outfile,token):
 				 like_cnt,
 				 goal])
 			cnt-=1
-	print ('Success! Please check output directory for result')
 
 
 # =================================================
 ### Main
 # =================================================
 from argparse import ArgumentParser
-parser=ArgumentParser(usage="python countLikes.py input_filename output_filename")
+parser=ArgumentParser(usage="python countLikes.py input_filename output_filename [--viz]")
 parser.add_argument('infile', help='Input CSV Data File Path')
 parser.add_argument('outfile', help='Output CSV File')
+parser.add_argument('viz',default="None", help='Viz Type')
 ar=parser.parse_args()
 
 infile='input/'+ar.infile
 outfile='output/'+ar.outfile
 token=pd.read_csv('input/token.txt')
+datViz=ar.viz.lower()
 
 head=(['Name','Facebook_ID', 'Like_Count', 'Type'])
 
@@ -95,3 +113,12 @@ with open(outfile, 'w') as h:
   f.writerow(head)
 
 run_counter(infile,outfile,token)
+
+if datViz=="bar":
+	out=pd.read_csv(outfile)
+	outarr=array(out)
+	out_dict=getLikesDict(outarr)
+	getbar(out_dict)
+else:
+	print ("Viz " + datViz + " Not Supported")
+
