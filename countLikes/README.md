@@ -14,10 +14,10 @@ You will need an Access Token from Facebook for this script to be functional. Yo
 ### 3) Input Schema
 After installing the supporting Libraries, fill out the "_/input/input.csv_" file in the _input_ Directory. Example Below:
 
-    Name    Facebook_ID     Type
-    Alex    12345678        photo
-    Bob     9101112134      page
-    Carol   484576920048    photo
+    Name 	 		Facebook_ID     Type
+    UpdatePost    	12345678        post
+    Pepsi    		9101112134      page
+    Carol Grad  	484576920048    photo
     
 - **Name:** "Page Name"/"Photo Name"
 - **ID:** ID of the Interested element.
@@ -29,7 +29,7 @@ After installing the supporting Libraries, fill out the "_/input/input.csv_" fil
     $>python countLikes.py <input file path> <output file path>
 
 "input file path" = Path to your input you created in Step 2 above.    
-You will find your <output CSV> in the _output_ directory unless stated otherwise.
+You will find your "output CSV" in the _output_ directory unless stated otherwise.
 
 ## Resources
 1. [Facebook Graph API Documentation](https://developers.facebook.com/docs/graph-api)
