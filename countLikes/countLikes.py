@@ -26,11 +26,11 @@ def getUrl(fbookid, goal):
 	url= 'Invalid entry for "goal" or "id"'
 	if goal=='page':
 		url= 'https://graph.facebook.com/%d/?fields=likes' %fbookid
-	elif goal=='photo':
+	elif (goal=='photo') or (goal=='post'):
 		url= 'https://graph.facebook.com/%d/likes?summary=1' %fbookid
 	return url
 
-def getPhotoLikes(json_input):
+def getObjectLikes(json_input):
 	return json_input['summary']['total_count']
 
 def getPageLikes(json_input):
@@ -39,10 +39,10 @@ def getPageLikes(json_input):
 def getLikes(fbookid,token,goal):
 	url=getUrl(fbookid, goal)
 	json= getDat(url,token)
-	if goal=='photo':
-		return getPhotoLikes(json)
-	elif goal=='page':
+	if goal=='page':
 		return getPageLikes(json)
+	else:
+		return getObjectLikes(json)
 
 # =================================================
 ### LIKE COUNTER
