@@ -21,9 +21,9 @@ After installing the supporting Libraries, fill out the "_/input/input.csv_" fil
     
 - **Name:** "Page Name"/"Photo Name"
 - **ID:** ID of the Interested element.
-    - Photos: "http://...facebook.com/photo.php?**fbid=1098762358020430**&set.."
+    - Photos: "http://...facebook.com/photo.php?**fbid=<PHOTO FACEBOOK ID>**&set.."
     - Pages: Use http://findmyfbid.com/
-    - Post: Click on TimeStamp of the Post. You will be navigated to a url of this format: "https://www.facebook.com/kavilovesyou/posts/**10153666702234285**"
+    - Post: Click on TimeStamp of the Post. You will be navigated to a url of this format: "https://www.facebook.com/kavilovesyou/posts/<POST FACEBOOK ID>"
 - **Type:** What type of element is it i.e. "Photo","Page","Post"
 
 ## Execute
